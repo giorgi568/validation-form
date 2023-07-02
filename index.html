@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+    }
+    .form{
+      display: flex;
+      flex-direction: column;
+      width: 220px;
+      gap: 10px;
+      margin-left: 50px;
+    }
+    input:not(:placeholder-shown):not(:focus):invalid{
+      border: 2px solid red;
+      border-radius: 2px;
+    }
+    input:not(:placeholder-shown):not(:focus):valid:not([type='submit']){
+      border: 2px solid green;
+      border-radius: 2px;
+    }
+    /* input:valid{
+        border: 2px solid black;
+      } */
+  </style>
+</head>
+<body>
+  <h1> simple validation form using constraint validation</h1>
+  <form action="validate" class="form">
+    <fieldset>
+      <label for="email">Enter Your Email:</label>
+      <input type="email" id="email" placeholder="example@mail.com">
+    </fieldset>
+
+    <fieldset>
+      <label for="country">Country:</label>
+      <select name="country" id="country" required>
+        <option value="USA">USA</option>
+        <option value="Germany">Germany</option>
+        <option value="England">England</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <label for="ZIP">ZIP Code:</label>
+      <input type="text" id="ZIP" required placeholder="ZIP">
+    </fieldset>
+
+    <fieldset>
+      <label for="password">Enter Password</label>
+      <input type="text" id="password" placeholder="Password" required minlength="5">
+    </fieldset>
+
+    <fieldset>
+      <label for="passwordConfirmation">Confirm Password</label>
+      <input type="password" id="passwordConfirmation" required placeholder="Password">
+    </fieldset>
+
+    <input type="submit" id="submit" value="Submit">
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
