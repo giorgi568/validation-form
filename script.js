@@ -26,17 +26,16 @@ function checkZIP() {
 }
 
 function checkPassword() {
-  const constraint = new RegExp('(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*W)', '');
+  const constraint = new RegExp('(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$', '');
   const password = document.getElementById('password').value;
-  console.log(constraint.test(password));
+
   if (constraint.test(password)) {
     document.getElementById('password').setCustomValidity('');
-    console.log('huraii');
   } else {
     document
       .getElementById('password')
       .setCustomValidity(
-        'password must contain at least one uppercase character, lowercase character number and special symbol'
+        'password must contain minimum eight characters, at least one letter and one number, no special characters'
       );
     document.getElementById('password').reportValidity();
   }
@@ -59,5 +58,13 @@ function confirmPassword() {
 window.onload = () => {
   document.getElementById('ZIP').oninput = checkZIP;
   document.getElementById('password').oninput = checkPassword;
+  document.getElementById('passwordConfirmation').oninput = confirmPassword;
+  document.getElementById('submit').onclick = (e) => {
+    const form = document.getElementById('form');
+    if(form.checkValidity()){
+      e.preventDefault();
+      window.alert('high five');
+    }
+  };
   // document.getElementById('passwordConfirmation').oninput = confirmPassword;
 };
